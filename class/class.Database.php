@@ -3,10 +3,11 @@ class Database
 {
     private $_connection;
     private static $_instance; //The single instance
-    private $_host = "localhost";
-    private $_username = "root";
-    private $_password = "carlos3434";
-    private $_database = "psi2";
+    private $_host = HOSTNAME;
+    private $_username = USERNAME;
+    private $_password = PASSWORD;
+    private $_database = DATABASE_NAME;
+    private $_port = PORT;
 
     /*
     Get an instance of the Database

@@ -1,17 +1,20 @@
 <?php
 require_once "lib/nusoap.php";
-require_once "class/Database.php";
-require_once "class/Tarea.php";
 
-$client = new nusoap_client("http://test/nusoap/server.php?wsdl", true);
+
+$client = new nusoap_client("http://test/soap_opp/server.php?wsdl", true);
 $error  = $client->getError();
- 
+
 if ($error) {
     echo "<h2>Constructor error</h2><pre>" . $error . "</pre>";
 }
- 
-$result = $client->call("Tarea.select", array("id" => "Main"));
- 
+//$result2 = $client->call("Tarea.test", array("par" => '1'));
+
+$result = $client->call("Tarea.select", array("id" => '811'));
+echo "<pre>";
+var_dump($result);
+
+/*
 if ($client->fault) {
     echo "<h2>Fault</h2><pre>";
     print_r($result);
@@ -34,7 +37,7 @@ if ($client->fault) {
         }
     }
 }
- 
+*/
 // show soap request and response
 echo "<h2>Request</h2>";
 echo "<pre>" . htmlspecialchars($client->request, ENT_QUOTES) . "</pre>";
