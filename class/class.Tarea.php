@@ -7,13 +7,13 @@ class Tarea
 {
 
     public function select($id = NULL)
-    { 
+    {
         $return = array();
-        $db = Database::getInstance(); 
-        $mysqli = $db->getConnection(); 
+        $db = Database::getInstance();
+        $mysqli = $db->getConnection();
         $query = "SELECT * FROM tareas ";
-        if ($id != NULL) { 
-            $query .= " WHERE id = '$id' "; 
+        if ($id != NULL) {
+            $query .= " WHERE id = '$id' ";
         }
         $query .= " ORDER BY created_at DESC";
         try {
@@ -37,43 +37,44 @@ class Tarea
         $result->free();
         return $return;
     }
-    public function insert(
-        $asunto,
-        $actividad,
-        $requerimiento,
-        $serieDeco,
-        $serieTarjeta,
-        $telefonoOrigen
-    )
+    public function insert( $data )
     {
         $db = Database::getInstance();
 
         $mysqli = $db->getConnection();
 
-        $query = $mysqli->prepare(
-            "INSERT INTO tareas (asunto,
-          actividad, requerimiento, serie_deco, serie_tarjeta, telefono_origen)
-          VALUES (?, ?, ?, ?, ?, ?)"
-        );
-        $query->bind_param(
-            'ssssss',
-            $asunto,
-            $actividad,
-            $requerimiento,
-            $serieDeco,
-            $serieTarjeta,
-            $telefonoOrigen
-        );
+        $asunto = $data['asunto'];
+        $actividad = $data['actividad'];
+        $requerimiento = $data['requerimiento'];
+        $serieDeco = $data['serieDeco'];
+        $serieTarjeta = $data['serieTarjeta'];
+        $telefonoOrigen = $data['telefonoOrigen'];
+        if ($asunto <>'' && $actividad <>'' && $requerimiento <>'' &&
+            $serieDeco <>'' && $serieTarjeta <>'' && $telefonoOrigen<>'') {
 
-        try {
-            $return = $mysqli->query($query);
+            $query = "INSERT INTO tareas (asunto,actividad, requerimiento,
+                serie_deco, serie_tarjeta, telefono_origen, estado,created_at,
+                usuario_created_at)
+              VALUES ( '$asunto','$actividad','$requerimiento',
+                '$serieDeco','$serieTarjeta','$telefonoOrigen',1, now(),666)";
 
-        } catch (Exception $e) {
-            return $e->errorMessage();
+            try {
+                $return = $mysqli->query($query);
+
+            } catch (Exception $e) {
+                //return $e->errorMessage();
+                return '0';
+            }
+
+            if ($mysqli->affected_rows > 0) {
+                //INSERT SUCCESS
+                return '1';
+            } else {
+                //INSERT FAILED
+                return '0';
+            }
+        } else {
+            return '0';
         }
-        return $return;
-    }
-    public function test( $par){
-        return $par.'asnajnsajkn';
     }
 }

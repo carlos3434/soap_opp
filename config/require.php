@@ -6,6 +6,6 @@ if ( $_SERVER['SERVER_NAME']=='10.226.44.223' ) {
     require_once "global_dev.php";
 }
 
-require_once "/../lib/nusoap.php";
-require_once "/../class/class.Database.php";
-require_once "/../class/class.Tarea.php";
+require_once(__DIR__."/../lib/nusoap.php");
+require_once(__DIR__."/../class/class.Database.php");
+require_once(__DIR__."/../class/class.Tarea.php");
