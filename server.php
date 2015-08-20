@@ -4,7 +4,7 @@ require_once "config/require.php";
 $server = new soap_server();
 $server->configureWSDL("psi", "urn:psi");
 $server->soap_defencoding = 'UTF-8';
-
+/*
 $server->register(
     "Tarea.test",
     array("par" => "xsd:string"),
@@ -14,7 +14,7 @@ $server->register(
     "rpc",
     "encoded",
     "test tarea"
-);
+);*/
 
 // Parametros de Salida
 $server->wsdl->addComplexType(
