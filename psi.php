@@ -5,41 +5,6 @@ $server = new soap_server();
 $server->configureWSDL("psi", "urn:psi");
 $server->soap_defencoding = 'UTF-8';
 
-// Parametros de Salida
-$server->wsdl->addComplexType(
-    'return_select',
-    'complexType',
-    'struct',
-    'all',
-    '',
-    array(
-        'asunto' => array(
-            'name' => 'asunto',
-            'type' => 'xsd:string'
-        ),
-        'actividad' => array(
-            'name' => 'actividad',
-            'type' => 'xsd:string'
-        ),
-        'requerimiento' => array(
-            'name' => 'requerimiento',
-            'type' => 'xsd:string'
-        ),
-        'serie_deco' => array(
-            'name' => 'serie_deco',
-            'type' => 'xsd:string'
-        ),
-        'serie_tarjeta' => array(
-            'name' => 'serie_tarjeta',
-            'type' => 'xsd:string'
-        ),
-        'telefono_origen' => array(
-            'name' => 'telefono_origen',
-            'type' => 'xsd:string'
-        )
-    )
-);
-
 /************
 seleccionar tareas
 ************/
