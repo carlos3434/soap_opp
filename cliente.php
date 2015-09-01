@@ -9,7 +9,23 @@ if ($error) {
     echo "<h2>Constructor error</h2><pre>" . $error . "</pre>";
 }
 
+$array=array(
+    'asunto'=>'asd',
+    'actividad'=>'asd',
+    'requerimiento'=>'asd',
+    'serieDeco'=>'asd',
+    'serieTarjeta'=>'asd',
+    'telefonoOrigen'=>'asd'
+    );
+
+
+
+$result = $client->call("Tarea.insert",array($array));
+echo "<pre>_";
+print_r( $result);
+echo "_<pre>insert";
 $result = $client->call("Tarea.select"/*, array("id" => '1')*/);
+
 echo "<pre>";
 
 if ($client->fault) {
